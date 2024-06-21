@@ -1,0 +1,51 @@
+{
+  "entry_conditions": {
+    "all": [
+      {
+        "operation": {
+          "left": {
+            "indicator": {"indicator": "MA", "params": {"period": 10}},
+            "comparator": "crosses_above",
+            "value": {"indicator": "MA", "params": {"period": 50}}
+          },
+          "operator": "+",
+          "right": 10
+        },
+        "comparator": "greater_than",
+        "value": 100
+      },
+      {
+        "operation": {
+          "left": {
+            "indicator": {"indicator": "RSI", "params": {"period": 14}},
+            "comparator": "less_than",
+            "value": 30
+          },
+          "operator": "-",
+          "right": {
+            "indicator": {"indicator": "RSI", "params": {"period": 14}},
+            "comparator": "greater_than",
+            "value": 70
+          }
+        }
+      }
+    ]
+  },
+  "exit_conditions": {
+    "all": [
+      {
+        "operation": {
+          "left": {
+            "indicator": {"indicator": "MA", "params": {"period": 10}},
+            "comparator": "crosses_below",
+            "value": {"indicator": "MA", "params": {"period": 50}}
+          },
+          "operator": "/",
+          "right": 2
+        },
+        "comparator": "less_than",
+        "value": 50
+      }
+    ]
+  }
+}
