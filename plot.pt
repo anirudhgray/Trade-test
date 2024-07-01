@@ -1,0 +1,16 @@
+# Manually create the plot
+    fig, ax = plt.subplots()
+    for data in cerebro.datas:
+        ax.plot(data.datetime.plot(), data.close.plot())
+    for strat in cerebro.strategies:
+        for order in strat.orders:
+            if order.isbuy():
+                ax.plot(order.created.dt, order.price, '^', markersize=10, color='green')
+            elif order.issell():
+                ax.plot(order.created.dt, order.price, 'v', markersize=10, color='red')
+
+    # Save the plot to an in-memory file without showing it
+    buffer = io.BytesIO()
+    fig.savefig(buffer, format='png')
+    plt.close(fig)  # Close the figure to free up memory
+    buffer.seek(0)
